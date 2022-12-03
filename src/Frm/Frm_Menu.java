@@ -159,6 +159,9 @@ public class Frm_Menu extends javax.swing.JFrame {
 
     private void btn_ClientesPlanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ClientesPlanActionPerformed
         // TODO add your handling code here:
+        this.setVisible(false);
+        Frm_ClientePlan ventana = new Frm_ClientePlan();
+        ventana.setVisible(true);
     }//GEN-LAST:event_btn_ClientesPlanActionPerformed
 
     private void btn_AdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AdminActionPerformed
