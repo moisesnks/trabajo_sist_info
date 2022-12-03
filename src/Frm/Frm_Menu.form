@@ -157,6 +157,7 @@
                 </Property>
                 <Property name="rows" type="int" value="5"/>
                 <Property name="text" type="java.lang.String" value="Para agregar nuevos clientes &#x9;&#x9;&gt; CLIENTES NUEVOS&#xa;Para modificar clientes existentes&#x9;&gt; CLIENTES Y PLANES&#xa;Para modificar planes, productos, etc...&#x9;&gt; ADMINISTRACI&#xd3;N&#xa;&#xa;&#xa;&#xa;&#xa;Atte. Master"/>
+                <Property name="opaque" type="boolean" value="false"/>
               </Properties>
             </Component>
           </SubComponents>

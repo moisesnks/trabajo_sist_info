@@ -116,6 +116,7 @@ public class Frm_Menu extends javax.swing.JFrame {
         jTextArea1.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
         jTextArea1.setRows(5);
         jTextArea1.setText("Para agregar nuevos clientes \t\t> CLIENTES NUEVOS\nPara modificar clientes existentes\t> CLIENTES Y PLANES\nPara modificar planes, productos, etc...\t> ADMINISTRACIÓN\n\n\n\n\nAtte. Master");
+        jTextArea1.setOpaque(false);
         jScrollPane1.setViewportView(jTextArea1);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 110, 490, 190));
