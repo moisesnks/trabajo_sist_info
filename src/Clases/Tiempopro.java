@@ -19,10 +19,13 @@ public class Tiempopro {
      String mes = Integer.toString(fecha.get(Calendar.MONTH));
       String dia = Integer.toString(fecha.get(Calendar.DATE));
 
-    public  String fechacomp = anho+"-"+mes+"-"+dia;
+    public  String fechacomp = dia+"/"+mes+"/"+anho;
 
     String hora = Integer.toString(fecha.get(Calendar.HOUR_OF_DAY));
-     String minutos = Integer.toString(fecha.get(Calendar.MINUTE));
+    String minutos = Integer.toString(fecha.get(Calendar.MINUTE));
+    
 
     public String horacomp = hora+":"+minutos;
+    
+    
 }

@@ -4,6 +4,19 @@
  */
 package Frm;
 
+import BO.ClienteBO;
+import Clases.Cliente;
+import Clases.Conexion;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Moises
@@ -13,9 +26,43 @@ public class Frm_ClienteNuevo extends javax.swing.JFrame {
     /**
      * Creates new form Frm_ClienteNuevo
      */
+    
+    private ClienteBO cbo = new ClienteBO();
+    
+    
     public Frm_ClienteNuevo() {
         initComponents();
+        mostrarClientes();
+        llenarCombo(combo_Planes, "select * from PLAN_ATENCION", "ID_PLAN", "NOMBRE_PLAN");
+        tablaClientes.setFocusable(false);
+        
     }
+    
+    public void mostrarClientes(){
+        cbo.listarCliente(tablaClientes);
+    }
+    
+    public void llenarCombo(JComboBox tabla, String sql, String p1, String p2){
+        Connection conn = Conexion.getConnection();
+        PreparedStatement pst;
+        ResultSet rs;
+        
+        try {
+            pst = conn.prepareStatement(sql);
+            rs  = pst.executeQuery();
+            
+            while(rs.next()){
+                String name = rs.getString(p1) + " " + rs.getString(p2);
+                combo_Planes.addItem(name);
+                
+            }
+            
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -27,81 +74,102 @@ public class Frm_ClienteNuevo extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        btn_Volver = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
         txt_Rut = new javax.swing.JTextField();
         txt_Nombre = new javax.swing.JTextField();
         txt_ApellidoPat = new javax.swing.JTextField();
         txt_ApellidoMat = new javax.swing.JTextField();
+        txt_Correo = new javax.swing.JTextField();
         combo_Planes = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tablaClientes = new javax.swing.JTable();
         combo_Productos = new javax.swing.JComboBox<>();
         jLabel7 = new javax.swing.JLabel();
-        jRadioButton1 = new javax.swing.JRadioButton();
+        btn_Agregar = new javax.swing.JButton();
+        btn_Limpiar = new javax.swing.JButton();
+        btn_Eliminar = new javax.swing.JButton();
+        btn_Editar = new javax.swing.JButton();
+        btn_Buscar = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        btn_Volver = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Clientes Nuevos");
         setMaximumSize(new java.awt.Dimension(1000, 500));
         setMinimumSize(new java.awt.Dimension(1000, 500));
-        setPreferredSize(new java.awt.Dimension(1000, 500));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(153, 153, 153,80));
-
-        btn_Volver.setBackground(new java.awt.Color(255, 51, 51));
-        btn_Volver.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btn_Volver.setText("VOLVER");
-        btn_Volver.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_VolverActionPerformed(evt);
-            }
-        });
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("NOMBRE");
         jLabel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jLabel2.setOpaque(true);
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 68, 142, -1));
 
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("RUT");
         jLabel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jLabel3.setOpaque(true);
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 28, 142, -1));
 
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("APELLIDO MATERNO");
         jLabel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jLabel4.setOpaque(true);
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 148, 142, -1));
 
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("APELLIDO PATERNO");
         jLabel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jLabel5.setOpaque(true);
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 108, 142, -1));
 
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("PLANES DISPONIBLES");
         jLabel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jLabel6.setOpaque(true);
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, 142, -1));
+
+        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel9.setText("CORREO");
+        jLabel9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel9.setOpaque(true);
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 188, 142, 20));
 
         txt_Rut.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_RutActionPerformed(evt);
             }
         });
+        jPanel1.add(txt_Rut, new org.netbeans.lib.awtextra.AbsoluteConstraints(176, 26, 142, -1));
+        jPanel1.add(txt_Nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(176, 66, 142, -1));
+        jPanel1.add(txt_ApellidoPat, new org.netbeans.lib.awtextra.AbsoluteConstraints(176, 106, 142, -1));
+        jPanel1.add(txt_ApellidoMat, new org.netbeans.lib.awtextra.AbsoluteConstraints(176, 146, 142, -1));
+        jPanel1.add(txt_Correo, new org.netbeans.lib.awtextra.AbsoluteConstraints(176, 184, 142, -1));
 
+        combo_Planes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Haz click para ver PLANES" }));
+        combo_Planes.setToolTipText("");
         combo_Planes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 combo_PlanesActionPerformed(evt);
             }
         });
+        jPanel1.add(combo_Planes, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 250, 200, -1));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tablaClientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -112,90 +180,122 @@ public class Frm_ClienteNuevo extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        tablaClientes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaClientesMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tablaClientes);
+
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(422, 26, 480, 380));
+
+        combo_Productos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Haz click para ver PRODUCTOS" }));
+        combo_Productos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                combo_ProductosActionPerformed(evt);
+            }
+        });
+        jPanel1.add(combo_Productos, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 280, -1, -1));
 
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setText("PRODUCTOS");
         jLabel7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jLabel7.setOpaque(true);
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 280, 142, -1));
 
-        jRadioButton1.setText("no aplica");
+        btn_Agregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imágenes/icon_agregar.png"))); // NOI18N
+        btn_Agregar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        btn_Agregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_AgregarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btn_Agregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 340, -1, -1));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(btn_Volver))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(16, 16, 16)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txt_Rut)
-                            .addComponent(txt_Nombre)
-                            .addComponent(txt_ApellidoPat)
-                            .addComponent(txt_ApellidoMat)
-                            .addComponent(combo_Planes, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(combo_Productos, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 509, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jRadioButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(115, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(txt_Rut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(txt_Nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5)
-                            .addComponent(txt_ApellidoPat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(txt_ApellidoMat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel6)
-                            .addComponent(combo_Planes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(combo_Productos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7)
-                    .addComponent(jRadioButton1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 178, Short.MAX_VALUE)
-                .addComponent(btn_Volver, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
+        btn_Limpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imágenes/icon_limpiar2.png"))); // NOI18N
+        btn_Limpiar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        btn_Limpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_LimpiarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btn_Limpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 339, -1, -1));
+
+        btn_Eliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imágenes/icon_eliminar.png"))); // NOI18N
+        btn_Eliminar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        btn_Eliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_EliminarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btn_Eliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 340, 60, -1));
+
+        btn_Editar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imágenes/icon_edit.png"))); // NOI18N
+        btn_Editar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        btn_Editar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_EditarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btn_Editar, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 340, 60, -1));
+
+        btn_Buscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imágenes/icon_buscar.png"))); // NOI18N
+        btn_Buscar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        btn_Buscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_BuscarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btn_Buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 340, -1, -1));
+
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel8.setText("BUSCAR");
+        jLabel8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel8.setOpaque(true);
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 410, 50, 20));
+
+        jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel10.setText("LIMPIAR");
+        jLabel10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel10.setOpaque(true);
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 410, 50, 20));
+
+        jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel11.setText("AÑADIR");
+        jLabel11.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel11.setOpaque(true);
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 410, 50, 20));
+
+        jLabel12.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel12.setText("ELIMINAR");
+        jLabel12.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel12.setOpaque(true);
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 410, 50, 20));
+
+        jLabel13.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel13.setText("EDITAR");
+        jLabel13.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel13.setOpaque(true);
+        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 410, 50, 20));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 960, 440));
 
+        btn_Volver.setBackground(new java.awt.Color(255, 51, 51));
+        btn_Volver.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btn_Volver.setText("VOLVER");
+        btn_Volver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_VolverActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btn_Volver, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 470, -1, 20));
+
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imágenes/bg_clientesNuevos.jpg"))); // NOI18N
-        jLabel1.setText("jLabel1");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 500));
 
         pack();
@@ -216,6 +316,128 @@ public class Frm_ClienteNuevo extends javax.swing.JFrame {
     private void combo_PlanesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combo_PlanesActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_combo_PlanesActionPerformed
+
+    public void Agregar(){
+        String mensaje = "";
+        Cliente c = new Cliente();
+                c.setRut(Integer.parseInt(txt_Rut.getText()));
+                c.setNombres(txt_Nombre.getText());
+                c.setApellido_mat(txt_ApellidoMat.getText());
+                c.setApellido_pat(txt_ApellidoPat.getText());
+                c.setCorreo(txt_Correo.getText());
+
+                mensaje = cbo.agregarCliente(c);
+
+                JOptionPane.showMessageDialog(null, mensaje);
+                limpiar();
+                mostrarClientes();
+    }
+    private void btn_AgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AgregarActionPerformed
+        // TODO add your handling code here:
+        
+        if (txt_Rut.getText().isEmpty() || txt_Nombre.getText().isEmpty() 
+            || txt_ApellidoPat.getText().isEmpty() || txt_ApellidoMat.getText().isEmpty() || txt_Correo.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Llene todos los campos", "Para agregar un Cliente", JOptionPane.WARNING_MESSAGE);
+        } else {
+            if((combo_Planes.getSelectedIndex() == 0) && combo_Productos.getSelectedIndex() == 0){
+                JOptionPane.showMessageDialog(null, "Debe seleccionar al menos un plan ó un producto");
+            }
+            else if((combo_Planes.getSelectedIndex() != 0) && (combo_Productos.getSelectedIndex() == 0)){
+                System.out.println("Debo meter una relación Cliente-Plan");
+                Agregar();
+            }
+            else if((combo_Planes.getSelectedIndex() == 0) && (combo_Productos.getSelectedIndex() != 0)){
+                System.out.println("Debo meter una relación Cliente-Producto");
+                Agregar();
+            }    
+        }
+    }//GEN-LAST:event_btn_AgregarActionPerformed
+
+    private void tablaClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaClientesMouseClicked
+        // TODO add your handling code here:
+        int seleccion = tablaClientes.rowAtPoint(evt.getPoint());
+        txt_Rut.setText(tablaClientes.getValueAt(seleccion, 0)+"");
+        txt_Rut.setEditable(false);
+        txt_Nombre.setText(tablaClientes.getValueAt(seleccion, 1)+"");
+        txt_ApellidoMat.setText(tablaClientes.getValueAt(seleccion, 2)+"");
+        txt_ApellidoPat.setText(tablaClientes.getValueAt(seleccion, 3)+"");
+        txt_Correo.setText(tablaClientes.getValueAt(seleccion, 4)+"");
+        
+    }//GEN-LAST:event_tablaClientesMouseClicked
+
+    public void limpiar(){
+        String vacio = "";
+        txt_Rut.setText(vacio);
+        txt_Nombre.setText(vacio);
+        txt_ApellidoMat.setText(vacio);
+        txt_ApellidoPat.setText(vacio);
+        txt_Correo.setText(vacio);
+        combo_Planes.setSelectedIndex(0);
+        combo_Productos.setSelectedIndex(0);
+    }
+    private void btn_LimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_LimpiarActionPerformed
+        // TODO add your handling code here:
+        limpiar();
+        mostrarClientes();
+    }//GEN-LAST:event_btn_LimpiarActionPerformed
+
+    public void eliminarCliente(){
+        String mensaje = cbo.eliminarCliente(Integer.parseInt(txt_Rut.getText()));
+        JOptionPane.showMessageDialog(null, mensaje);
+        limpiar();
+        mostrarClientes();
+        
+    }
+    private void btn_EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_EliminarActionPerformed
+        // TODO add your handling code here:
+        if (txt_Rut.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "No puede faltar el RUT.", "Para eliminar un Cliente", JOptionPane.WARNING_MESSAGE);
+        } 
+        else if( JOptionPane.showConfirmDialog(rootPane, "Se eliminará el registro, ¿Desea Continuar?",
+        "Eliminar Registro", JOptionPane.WARNING_MESSAGE, JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
+            eliminarCliente();
+        }
+    }//GEN-LAST:event_btn_EliminarActionPerformed
+
+    private void btn_EditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_EditarActionPerformed
+        // TODO add your handling code here:
+        if (txt_Rut.getText().isEmpty() || txt_Nombre.getText().isEmpty() 
+            || txt_ApellidoPat.getText().isEmpty() || txt_ApellidoMat.getText().isEmpty() || txt_Correo.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Llene todos los campos", "Para editar un Cliente", JOptionPane.WARNING_MESSAGE);
+        } else {
+            Cliente c = new Cliente();
+            
+            c.setRut(Integer.parseInt(txt_Rut.getText()));
+            c.setNombres(txt_Nombre.getText());
+            c.setApellido_mat(txt_ApellidoMat.getText());
+            c.setApellido_pat(txt_ApellidoPat.getText());
+            c.setCorreo(txt_Correo.getText());
+            //c.setId_plan(Integer.parseInt(txtID_Plan.getText()));
+            
+            if( JOptionPane.showConfirmDialog(rootPane, "Se actualizará el registro, ¿Desea Continuar?",
+        "Actualizar Registro", JOptionPane.WARNING_MESSAGE, JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
+                String mensaje = cbo.modificarCliente(c);
+                JOptionPane.showMessageDialog(null, mensaje);
+                limpiar();
+                mostrarClientes();
+            }
+        }
+    }//GEN-LAST:event_btn_EditarActionPerformed
+
+    private void combo_ProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combo_ProductosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_combo_ProductosActionPerformed
+
+    private void btn_BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_BuscarActionPerformed
+        // TODO add your handling code here:
+        if (txt_Rut.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Es necesario el RUT", "Para buscar un Cliente", JOptionPane.WARNING_MESSAGE);
+        } else {
+            int rut = Integer.parseInt(txt_Rut.getText());
+            cbo.BuscarCliente(rut, tablaClientes);
+            
+        }
+    }//GEN-LAST:event_btn_BuscarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -248,27 +470,39 @@ public class Frm_ClienteNuevo extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Frm_ClienteNuevo().setVisible(true);
+                
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_Agregar;
+    private javax.swing.JButton btn_Buscar;
+    private javax.swing.JButton btn_Editar;
+    private javax.swing.JButton btn_Eliminar;
+    private javax.swing.JButton btn_Limpiar;
     private javax.swing.JButton btn_Volver;
     private javax.swing.JComboBox<String> combo_Planes;
     private javax.swing.JComboBox<String> combo_Productos;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tablaClientes;
     private javax.swing.JTextField txt_ApellidoMat;
     private javax.swing.JTextField txt_ApellidoPat;
+    private javax.swing.JTextField txt_Correo;
     private javax.swing.JTextField txt_Nombre;
     private javax.swing.JTextField txt_Rut;
     // End of variables declaration//GEN-END:variables

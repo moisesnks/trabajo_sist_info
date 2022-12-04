@@ -5,7 +5,7 @@
 package Frm;
 
 import Clases.Conexion;
-
+import java.io.*;
 /**
  *
  * @author Moises
@@ -117,10 +117,15 @@ public class Frm_LoginDB extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_passActionPerformed
 
+    
     private void btn_ConnectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ConnectActionPerformed
         // TODO add your handling code here:
-        Conexion.setLogin(txt_user.getText());
-        Conexion.setClave(txt_pass.getText());
+        String login = txt_user.getText();
+        String pass = txt_pass.getText();
+        Conexion.setLogin(login);
+        Conexion.setClave(pass);
+        
+        
         
         Conexion c = new Conexion();
         

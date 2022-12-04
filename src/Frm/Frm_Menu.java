@@ -25,6 +25,7 @@ public class Frm_Menu extends javax.swing.JFrame {
         initComponents();
         mostrarTiempo();
         bloquearTexto(jTextArea1);
+       
 
     }
     
@@ -34,7 +35,7 @@ public class Frm_Menu extends javax.swing.JFrame {
     HORA.setText(time.horacomp);
 }
     public void bloquearTexto(JTextArea t){
-        t.setEnabled(false);
+        //t.setEnabled(false);
         t.setHighlighter(null);
     }
 
@@ -58,6 +59,8 @@ public class Frm_Menu extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         FECHA = new javax.swing.JLabel();
         HORA = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
         img_bg = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -79,10 +82,10 @@ public class Frm_Menu extends javax.swing.JFrame {
                 btn_SalirActionPerformed(evt);
             }
         });
-        jPanel1.add(btn_Salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 420, -1, 20));
+        jPanel1.add(btn_Salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 420, 80, 30));
 
         btn_ClientesNuevos.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btn_ClientesNuevos.setText("CLIENTES NUEVOS");
+        btn_ClientesNuevos.setText("CLIENTES");
         btn_ClientesNuevos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_ClientesNuevosActionPerformed(evt);
@@ -110,16 +113,20 @@ public class Frm_Menu extends javax.swing.JFrame {
 
         img_skltn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imágenes/skeleton.jpg"))); // NOI18N
         img_skltn.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        img_skltn.setFocusable(false);
+        img_skltn.setName(""); // NOI18N
         jPanel1.add(img_skltn, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 110, 210, 280));
 
         jTextArea1.setColumns(20);
         jTextArea1.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
         jTextArea1.setRows(5);
-        jTextArea1.setText("Para agregar nuevos clientes \t\t> CLIENTES NUEVOS\nPara modificar clientes existentes\t> CLIENTES Y PLANES\nPara modificar planes, productos, etc...\t> ADMINISTRACIÓN\n\n\n\n\nAtte. Master");
+        jTextArea1.setText("Para agregar nuevos clientes, buscar\neliminar por completo, o modificar un dato\t> CLIENTES\n\n\nPara modificar clientes existentes,\neliminar uno de sus planes y/o productos\t> CLIENTES Y PLANES\n\n\nPara modificar planes, productos, etc...\t> ADMINISTRACIÓN\n\n\n\nAtte. Master");
+        jTextArea1.setFocusable(false);
         jTextArea1.setOpaque(false);
+        jTextArea1.setSelectionColor(new java.awt.Color(0, 0, 0));
         jScrollPane1.setViewportView(jTextArea1);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 110, 490, 190));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 110, 490, 280));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setText("MENÚ PRINCIPAL");
@@ -128,18 +135,30 @@ public class Frm_Menu extends javax.swing.JFrame {
         FECHA.setBackground(new java.awt.Color(255, 255, 102));
         FECHA.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         FECHA.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel1.add(FECHA, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 420, 70, 20));
+        jPanel1.add(FECHA, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 420, 70, 20));
 
         HORA.setBackground(new java.awt.Color(255, 255, 102));
         HORA.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         HORA.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel1.add(HORA, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 420, 70, 20));
+        jPanel1.add(HORA, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 420, 70, 20));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 980, 460));
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("HORA");
+        jLabel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 420, 70, -1));
 
-        img_bg.setForeground(new java.awt.Color(153, 153, 153,255));
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("FECHA");
+        jLabel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 420, 70, -1));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 980, 470));
+
         img_bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imágenes/bg_menu.jpg"))); // NOI18N
         img_bg.setToolTipText("");
+        img_bg.setFocusable(false);
         getContentPane().add(img_bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         setSize(new java.awt.Dimension(1016, 507));
@@ -215,6 +234,8 @@ public class Frm_Menu extends javax.swing.JFrame {
     private javax.swing.JLabel img_bg;
     private javax.swing.JLabel img_skltn;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;

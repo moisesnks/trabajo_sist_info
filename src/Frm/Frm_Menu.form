@@ -45,7 +45,7 @@
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="10" y="10" width="980" height="460"/>
+          <AbsoluteConstraints x="10" y="10" width="980" height="470"/>
         </Constraint>
       </Constraints>
 
@@ -68,7 +68,7 @@
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="20" y="420" width="-1" height="20"/>
+              <AbsoluteConstraints x="10" y="420" width="80" height="30"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -77,7 +77,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="14" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="CLIENTES NUEVOS"/>
+            <Property name="text" type="java.lang.String" value="CLIENTES"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_ClientesNuevosActionPerformed"/>
@@ -130,6 +130,8 @@
                 <LineBorder/>
               </Border>
             </Property>
+            <Property name="focusable" type="boolean" value="false"/>
+            <Property name="name" type="java.lang.String" value="" noResource="true"/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -143,7 +145,7 @@
           </AuxValues>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="450" y="110" width="490" height="190"/>
+              <AbsoluteConstraints x="450" y="110" width="490" height="280"/>
             </Constraint>
           </Constraints>
 
@@ -156,8 +158,12 @@
                   <Font name="Segoe UI" size="14" style="3"/>
                 </Property>
                 <Property name="rows" type="int" value="5"/>
-                <Property name="text" type="java.lang.String" value="Para agregar nuevos clientes &#x9;&#x9;&gt; CLIENTES NUEVOS&#xa;Para modificar clientes existentes&#x9;&gt; CLIENTES Y PLANES&#xa;Para modificar planes, productos, etc...&#x9;&gt; ADMINISTRACI&#xd3;N&#xa;&#xa;&#xa;&#xa;&#xa;Atte. Master"/>
+                <Property name="text" type="java.lang.String" value="Para agregar nuevos clientes, buscar&#xa;eliminar por completo, o modificar un dato&#x9;&gt; CLIENTES&#xa;&#xa;&#xa;Para modificar clientes existentes,&#xa;eliminar uno de sus planes y/o productos&#x9;&gt; CLIENTES Y PLANES&#xa;&#xa;&#xa;Para modificar planes, productos, etc...&#x9;&gt; ADMINISTRACI&#xd3;N&#xa;&#xa;&#xa;&#xa;Atte. Master"/>
+                <Property name="focusable" type="boolean" value="false"/>
                 <Property name="opaque" type="boolean" value="false"/>
+                <Property name="selectionColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="0" green="0" red="0" type="rgb"/>
+                </Property>
               </Properties>
             </Component>
           </SubComponents>
@@ -189,7 +195,7 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="110" y="420" width="70" height="20"/>
+              <AbsoluteConstraints x="200" y="420" width="70" height="20"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -207,7 +213,45 @@
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="190" y="420" width="70" height="20"/>
+              <AbsoluteConstraints x="390" y="420" width="70" height="20"/>
+            </Constraint>
+          </Constraints>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel2">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="12" style="1"/>
+            </Property>
+            <Property name="horizontalAlignment" type="int" value="0"/>
+            <Property name="text" type="java.lang.String" value="HORA"/>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                <LineBorder/>
+              </Border>
+            </Property>
+          </Properties>
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+              <AbsoluteConstraints x="310" y="420" width="70" height="-1"/>
+            </Constraint>
+          </Constraints>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel3">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="12" style="1"/>
+            </Property>
+            <Property name="horizontalAlignment" type="int" value="0"/>
+            <Property name="text" type="java.lang.String" value="FECHA"/>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                <LineBorder/>
+              </Border>
+            </Property>
+          </Properties>
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+              <AbsoluteConstraints x="110" y="420" width="70" height="-1"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -215,13 +259,11 @@
     </Container>
     <Component class="javax.swing.JLabel" name="img_bg">
       <Properties>
-        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="new java.awt.Color(153, 153, 153,255)" type="code"/>
-        </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/Im&#xe1;genes/bg_menu.jpg"/>
         </Property>
         <Property name="toolTipText" type="java.lang.String" value=""/>
+        <Property name="focusable" type="boolean" value="false"/>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
