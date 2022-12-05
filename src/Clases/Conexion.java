@@ -11,7 +11,7 @@ import javax.swing.JOptionPane;
 public class Conexion {
     private static Connection conn = null;
     private static String login = "PROYECTO";
-    private static String clave = "2411";
+    private static String clave = "1234";
     private static String url = "jdbc:oracle:thin:@localhost:1521:orcl";
 
     public static Connection getConnection(){

@@ -186,6 +186,9 @@ public class Frm_Menu extends javax.swing.JFrame {
 
     private void btn_AdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_AdminActionPerformed
         // TODO add your handling code here:
+        this.setVisible(false);
+        Frm_Administracion ventana = new Frm_Administracion();
+        ventana.setVisible(true);
     }//GEN-LAST:event_btn_AdminActionPerformed
 
     /**
