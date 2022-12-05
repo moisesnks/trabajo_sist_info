@@ -374,11 +374,13 @@ public class Frm_ClienteNuevo extends javax.swing.JFrame {
         txt_Correo.setText(vacio);
         combo_Planes.setSelectedIndex(0);
         combo_Productos.setSelectedIndex(0);
+        txt_Rut.setEditable(true);
     }
     private void btn_LimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_LimpiarActionPerformed
         // TODO add your handling code here:
         limpiar();
         mostrarClientes();
+        
     }//GEN-LAST:event_btn_LimpiarActionPerformed
 
     public void eliminarCliente(){
